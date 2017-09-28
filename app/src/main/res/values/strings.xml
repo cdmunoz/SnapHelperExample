@@ -1,0 +1,8 @@
+<resources>
+  <string name="app_name">Snap Helper Example</string>
+  <string name="candy_description">Candy Name</string>
+  <string name="start_snap_title">Snap the list to the start</string>
+  <string name="center_snap_title">Snap the list to the center</string>
+  <string name="end_snap_title">Snap the list to the end</string>
+  <string name="error_message">An occurred while getting the results</string>
+</resources>
