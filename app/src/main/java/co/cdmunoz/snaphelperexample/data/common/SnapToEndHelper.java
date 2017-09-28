@@ -73,49 +73,24 @@ public class SnapToEndHelper extends LinearSnapHelper {
     if (layoutManager instanceof LinearLayoutManager) {
       int lastChild = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
       int offset = 1;
-      boolean isLastItem =
-          ((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition()
-              == layoutManager.getItemCount() - 1;
 
-      if (lastChild == RecyclerView.NO_POSITION/* || isLastItem*/) {
+      if (lastChild == RecyclerView.NO_POSITION) {
         return null;
       }
 
       View child = layoutManager.findViewByPosition(lastChild);
 
-      /*if (helper.getDecoratedEnd(child) >= helper.getDecoratedMeasurement(child) / 2
-          && helper.getDecoratedEnd(child) > 0) {
-        return child;
-      } else {
-        if (((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition()
-            == layoutManager.getItemCount() - 1) {
-          return null;
-        } else {
-          return layoutManager.findViewByPosition(lastChild + 1);
-        }
-      }
-    }
-    return super.findSnapView(layoutManager);*/
-      float visibleWidth;
-
-      if (/*isRtlHorizontal*/true) {
-        visibleWidth = (float) helper.getDecoratedEnd(child)
-            / helper.getDecoratedMeasurement(child);
-      } else {
-        visibleWidth = (float) (helper.getTotalSpace() - helper.getDecoratedStart(child))
-            / helper.getDecoratedMeasurement(child);
-      }
+      float visibleWidth =
+          (float) helper.getDecoratedEnd(child) / helper.getDecoratedMeasurement(child);
 
       // If we're at the start of the list, we shouldn't snap
       // to avoid having the first item not completely visible.
-      boolean startOfList = ((LinearLayoutManager) layoutManager)
-          .findFirstCompletelyVisibleItemPosition() == 0;
+      boolean startOfList =
+          ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition() == 0;
 
       if (visibleWidth > 0.5f && !startOfList) {
         return child;
-      } /*else if (snapLastItem && startOfList) {
-        return child;
-      }*/ else if (startOfList) {
+      } else if (startOfList) {
         return null;
       } else {
         // If the child wasn't returned, we need to return the previous view
