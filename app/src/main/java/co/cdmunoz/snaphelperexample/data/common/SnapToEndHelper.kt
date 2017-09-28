@@ -8,8 +8,8 @@ import android.view.View
 
 class SnapToEndHelper : LinearSnapHelper() {
 
-  private var mVerticalHelper: OrientationHelper? = null
-  private var mHorizontalHelper: OrientationHelper? = null
+  private lateinit var mVerticalHelper: OrientationHelper
+  private lateinit var mHorizontalHelper: OrientationHelper
 
   @Throws(IllegalStateException::class)
   override fun attachToRecyclerView(recyclerView: RecyclerView?) {
@@ -35,22 +35,17 @@ class SnapToEndHelper : LinearSnapHelper() {
   }
 
   private fun getHorizontalHelper(layoutManager: RecyclerView.LayoutManager): OrientationHelper {
-    if (mHorizontalHelper == null) {
-      mHorizontalHelper = OrientationHelper.createHorizontalHelper(layoutManager)
-    }
+    mHorizontalHelper = OrientationHelper.createHorizontalHelper(layoutManager)
     return mHorizontalHelper
   }
 
   private fun getVerticalHelper(layoutManager: RecyclerView.LayoutManager): OrientationHelper {
-    if (mVerticalHelper == null) {
-      mVerticalHelper = OrientationHelper.createVerticalHelper(layoutManager)
-    }
+    mVerticalHelper = OrientationHelper.createVerticalHelper(layoutManager)
     return mVerticalHelper
   }
 
-  private fun distanceToEnd(targetView: View, helper: OrientationHelper): Int {
-    return helper.getDecoratedEnd(targetView) - helper.endAfterPadding
-  }
+  private fun distanceToEnd(targetView: View, helper: OrientationHelper): Int =
+      helper.getDecoratedEnd(targetView) - helper.endAfterPadding
 
   override fun findSnapView(layoutManager: RecyclerView.LayoutManager): View? {
     return if (layoutManager is LinearLayoutManager) {

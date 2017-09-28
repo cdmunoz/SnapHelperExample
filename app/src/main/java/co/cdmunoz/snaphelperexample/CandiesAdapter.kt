@@ -25,28 +25,26 @@ class CandiesAdapter : RecyclerView.Adapter<CandiesAdapter.CandyHolder>() {
     holder.bindCandy(candies[position])
   }
 
-  override fun getItemCount(): Int {
-    return candies.size
-  }
+  override fun getItemCount(): Int = candies.size
 
   fun setCandies(candies: List<Candy>) {
     this.candies = candies
     notifyDataSetChanged()
   }
 
-  internal inner class CandyHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
+  inner class CandyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     @BindView(R.id.candyImage)
-    var candyImage: ImageView? = null
+    lateinit var candyImage: ImageView
     @BindView(R.id.candyName)
-    var candyName: TextView? = null
+    lateinit var candyName: TextView
 
     init {
       ButterKnife.bind(this, itemView)
     }
 
     fun bindCandy(candy: Candy) {
-      candyImage!!.setImageResource(candy.candyResource)
-      candyName!!.text = candy.candyName
+      candyImage.setImageResource(candy.candyResource)
+      candyName.text = candy.candyName
     }
   }
 }

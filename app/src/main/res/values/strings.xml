@@ -4,5 +4,5 @@
   <string name="start_snap_title">Snap the list to the start</string>
   <string name="center_snap_title">Snap the list to the center</string>
   <string name="end_snap_title">Snap the list to the end</string>
-  <string name="error_message">An occurred while getting the results</string>
+  <string name="error_message">An error occurred while getting the results</string>
 </resources>

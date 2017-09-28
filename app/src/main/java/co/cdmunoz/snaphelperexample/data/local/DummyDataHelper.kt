@@ -20,7 +20,6 @@ class DummyDataHelper {
       candies.add(Candy(8, R.drawable.pirulito, "Pirulito"))
       candies.add(Candy(9, R.drawable.robin_hood_ice_cream, "Robin Hood Ice Cream"))
       candies.add(Candy(10, R.drawable.tipitin, "Tipitin"))
-
       return candies
     }
 }

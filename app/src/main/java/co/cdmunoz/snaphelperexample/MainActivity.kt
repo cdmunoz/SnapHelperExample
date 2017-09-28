@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.SnapHelper
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.ScrollView
@@ -19,25 +18,25 @@ import java.util.ArrayList
 
 class MainActivity : AppCompatActivity(), CandyView {
 
-  @BindView(R.id.rootView) internal var rootView: ScrollView? = null
+  @BindView(R.id.rootView) lateinit var rootView: ScrollView
   @BindView(
-      R.id.candiesContainerCenterSnap) internal var recyclerViewCenterSnap: RecyclerView? = null
-  @BindView(R.id.candiesContainerStartSnap) internal var recyclerViewStartSnap: RecyclerView? = null
-  @BindView(R.id.candiesContainerEndSnap) internal var recyclerViewEndSnap: RecyclerView? = null
-  @BindView(R.id.startSnapProgress) internal var startSnapProgress: ProgressBar? = null
-  @BindView(R.id.centerSnapProgress) internal var centerSnapProgress: ProgressBar? = null
-  @BindView(R.id.endSnapProgress) internal var endSnapProgress: ProgressBar? = null
+      R.id.candiesContainerCenterSnap) lateinit var recyclerViewCenterSnap: RecyclerView
+  @BindView(R.id.candiesContainerStartSnap) lateinit var recyclerViewStartSnap: RecyclerView
+  @BindView(R.id.candiesContainerEndSnap) lateinit var recyclerViewEndSnap: RecyclerView
+  @BindView(R.id.startSnapProgress) lateinit var startSnapProgress: ProgressBar
+  @BindView(R.id.centerSnapProgress) lateinit var centerSnapProgress: ProgressBar
+  @BindView(R.id.endSnapProgress) lateinit var endSnapProgress: ProgressBar
 
-  internal var adapterCenterSnap: CandiesAdapter
-  internal var adapterStartSnap: CandiesAdapter
-  internal var adapterEndSnap: CandiesAdapter
+  lateinit var adapterCenterSnap: CandiesAdapter
+  lateinit var adapterStartSnap: CandiesAdapter
+  lateinit var adapterEndSnap: CandiesAdapter
 
-  internal var candiesCenterSnap: MutableList<Candy> = ArrayList()
-  internal var candiesStartSnap: MutableList<Candy> = ArrayList()
-  internal var candiesEndSnap: MutableList<Candy> = ArrayList()
+  var candiesCenterSnap: MutableList<Candy> = ArrayList()
+  var candiesStartSnap: MutableList<Candy> = ArrayList()
+  var candiesEndSnap: MutableList<Candy> = ArrayList()
 
-  internal var snackbar: Snackbar
-  internal var candyPresenter: CandyPresenter
+  lateinit var snackbar: Snackbar
+  lateinit var candyPresenter: CandyPresenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -51,38 +50,38 @@ class MainActivity : AppCompatActivity(), CandyView {
 
   private fun initializeRecyclerViews() {
     val layoutManagerCenterSnap = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-    recyclerViewCenterSnap!!.layoutManager = layoutManagerCenterSnap
+    recyclerViewCenterSnap.layoutManager = layoutManagerCenterSnap
     adapterCenterSnap = CandiesAdapter()
-    recyclerViewCenterSnap!!.adapter = adapterCenterSnap
+    recyclerViewCenterSnap.adapter = adapterCenterSnap
     val snapHelperCenter = LinearSnapHelper()
     snapHelperCenter.attachToRecyclerView(recyclerViewCenterSnap)
 
     val layoutManagerStartSnap = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-    recyclerViewStartSnap!!.layoutManager = layoutManagerStartSnap
+    recyclerViewStartSnap.layoutManager = layoutManagerStartSnap
     adapterStartSnap = CandiesAdapter()
-    recyclerViewStartSnap!!.adapter = adapterStartSnap
+    recyclerViewStartSnap.adapter = adapterStartSnap
     val snapHelperStart = SnapToStartHelper()
     snapHelperStart.attachToRecyclerView(recyclerViewStartSnap)
 
     val layoutManagerEndSnap = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-    recyclerViewEndSnap!!.layoutManager = layoutManagerEndSnap
+    recyclerViewEndSnap.layoutManager = layoutManagerEndSnap
     adapterEndSnap = CandiesAdapter()
-    recyclerViewEndSnap!!.adapter = adapterEndSnap
+    recyclerViewEndSnap.adapter = adapterEndSnap
     val snapHelperEnd = SnapToEndHelper()
     snapHelperEnd.attachToRecyclerView(recyclerViewEndSnap)
 
   }
 
   override fun showLoading() {
-    startSnapProgress!!.visibility = View.VISIBLE
-    centerSnapProgress!!.visibility = View.VISIBLE
-    endSnapProgress!!.visibility = View.VISIBLE
+    startSnapProgress.visibility = View.VISIBLE
+    centerSnapProgress.visibility = View.VISIBLE
+    endSnapProgress.visibility = View.VISIBLE
   }
 
   override fun hideLoading() {
-    startSnapProgress!!.visibility = View.GONE
-    centerSnapProgress!!.visibility = View.GONE
-    endSnapProgress!!.visibility = View.GONE
+    startSnapProgress.visibility = View.GONE
+    centerSnapProgress.visibility = View.GONE
+    endSnapProgress.visibility = View.GONE
   }
 
   override fun showCandies(candies: List<Candy>) {
@@ -95,7 +94,7 @@ class MainActivity : AppCompatActivity(), CandyView {
   }
 
   override fun showError() {
-    snackbar = Snackbar.make(rootView!!, R.string.error_message, Snackbar.LENGTH_SHORT)
+    snackbar = Snackbar.make(rootView, R.string.error_message, Snackbar.LENGTH_SHORT)
     snackbar.show()
   }
 

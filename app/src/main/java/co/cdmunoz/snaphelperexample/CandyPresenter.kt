@@ -8,11 +8,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class CandyPresenter(private val view: CandyView?) {
-  private val candyInteractor: CandyInteractor
-
-  init {
-    this.candyInteractor = CandyInteractor()
-  }
+  private val candyInteractor: CandyInteractor = CandyInteractor()
 
   fun getCandies() {
     if (null != view) {
@@ -25,16 +21,13 @@ class CandyPresenter(private val view: CandyView?) {
               override fun onSubscribe(d: Disposable) {
 
               }
-
               override fun onNext(candies: List<Candy>) {
                 view.hideLoading()
                 view.showCandies(candies)
               }
-
               override fun onError(e: Throwable) {
                 view.showError()
               }
-
               override fun onComplete() {
                 view.hideLoading()
               }

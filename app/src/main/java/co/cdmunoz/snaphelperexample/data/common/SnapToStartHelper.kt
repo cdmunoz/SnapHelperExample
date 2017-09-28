@@ -16,8 +16,8 @@ import android.view.View
  */
 class SnapToStartHelper : LinearSnapHelper() {
 
-  private var mVerticalHelper: OrientationHelper? = null
-  private var mHorizontalHelper: OrientationHelper? = null
+  private lateinit var mVerticalHelper: OrientationHelper
+  private lateinit var mHorizontalHelper: OrientationHelper
 
   @Throws(IllegalStateException::class)
   override fun attachToRecyclerView(recyclerView: RecyclerView?) {
@@ -43,22 +43,17 @@ class SnapToStartHelper : LinearSnapHelper() {
   }
 
   private fun getHorizontalHelper(layoutManager: RecyclerView.LayoutManager): OrientationHelper {
-    if (mHorizontalHelper == null) {
-      mHorizontalHelper = OrientationHelper.createHorizontalHelper(layoutManager)
-    }
+    mHorizontalHelper = OrientationHelper.createHorizontalHelper(layoutManager)
     return mHorizontalHelper
   }
 
   private fun getVerticalHelper(layoutManager: RecyclerView.LayoutManager): OrientationHelper {
-    if (mVerticalHelper == null) {
-      mVerticalHelper = OrientationHelper.createVerticalHelper(layoutManager)
-    }
+    mVerticalHelper = OrientationHelper.createVerticalHelper(layoutManager)
     return mVerticalHelper
   }
 
-  private fun distanceToStart(targetView: View, helper: OrientationHelper): Int {
-    return helper.getDecoratedStart(targetView) - helper.startAfterPadding
-  }
+  private fun distanceToStart(targetView: View, helper: OrientationHelper): Int =
+      helper.getDecoratedStart(targetView) - helper.startAfterPadding
 
   override fun findSnapView(layoutManager: RecyclerView.LayoutManager): View? {
     return if (layoutManager is LinearLayoutManager) {
