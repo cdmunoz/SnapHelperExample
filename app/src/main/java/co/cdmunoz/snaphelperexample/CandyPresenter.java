@@ -7,13 +7,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.List;
+import javax.inject.Inject;
 
 public class CandyPresenter {
 
   private final CandyView view;
   private final CandyInteractor candyInteractor;
 
-  public CandyPresenter(CandyView view) {
+  @Inject public CandyPresenter(CandyView view) {
     this.view = view;
     this.candyInteractor = new CandyInteractor();
   }

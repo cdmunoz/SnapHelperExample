@@ -15,8 +15,12 @@ import butterknife.ButterKnife;
 import co.cdmunoz.snaphelperexample.data.common.SnapToEndHelper;
 import co.cdmunoz.snaphelperexample.data.common.SnapToStartHelper;
 import co.cdmunoz.snaphelperexample.data.model.Candy;
+import co.cdmunoz.snaphelperexample.di.component.ActivityComponent;
+import co.cdmunoz.snaphelperexample.di.component.DaggerActivityComponent;
+import co.cdmunoz.snaphelperexample.di.module.ActivityModule;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements CandyView {
 
@@ -37,7 +41,17 @@ public class MainActivity extends AppCompatActivity implements CandyView {
   List<Candy> candiesEndSnap = new ArrayList<>();
 
   Snackbar snackbar;
-  CandyPresenter candyPresenter;
+  @Inject CandyPresenter candyPresenter;
+
+  private ActivityComponent activityComponent;
+
+  public ActivityComponent getActivityComponent() {
+    if (null == activityComponent) {
+      activityComponent =
+          DaggerActivityComponent.builder().activityModule(new ActivityModule(this)).build();
+    }
+    return activityComponent;
+  }
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -45,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements CandyView {
     ButterKnife.bind(this);
 
     initializeRecyclerViews();
-    candyPresenter = new CandyPresenter(this);
+    getActivityComponent().inject(this);
     candyPresenter.getCandies();
   }
 
@@ -73,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements CandyView {
     recyclerViewEndSnap.setAdapter(adapterEndSnap);
     SnapHelper snapHelperEnd = new SnapToEndHelper();
     snapHelperEnd.attachToRecyclerView(recyclerViewEndSnap);
-
   }
 
   @Override public void showLoading() {
@@ -101,5 +114,4 @@ public class MainActivity extends AppCompatActivity implements CandyView {
     snackbar = Snackbar.make(rootView, R.string.error_message, Snackbar.LENGTH_SHORT);
     snackbar.show();
   }
-
 }

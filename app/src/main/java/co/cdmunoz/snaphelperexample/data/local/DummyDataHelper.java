@@ -4,7 +4,9 @@ import co.cdmunoz.snaphelperexample.R;
 import co.cdmunoz.snaphelperexample.data.model.Candy;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Singleton;
 
+@Singleton
 public class DummyDataHelper {
 
   public DummyDataHelper() {
