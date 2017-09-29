@@ -6,6 +6,8 @@ to support snapping both to start and to end. These classes are located in /data
 and *findSnapView* to define the snapping behavior. On each class the method *distanceToStart* and *distanceToEnd* were created 
 as well respectively.
 
+The **master** branch is in Java. **kotlin-version** in Kotlin.
+
 ## How this would like
 The first list snaps the list to the start, the second to the center and the third to the end
 
