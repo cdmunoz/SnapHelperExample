@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity implements CandyView {
+public class HorizontalSnapActivity extends AppCompatActivity implements CandyView {
 
   @BindView(R.id.rootView) ScrollView rootView;
   @BindView(R.id.candiesContainerCenterSnap) RecyclerView recyclerViewCenterSnap;
@@ -55,8 +55,10 @@ public class MainActivity extends AppCompatActivity implements CandyView {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_horizontal_snap);
     ButterKnife.bind(this);
+
+    if (null != getSupportActionBar()) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     initializeRecyclerViews();
     getActivityComponent().inject(this);
@@ -113,5 +115,10 @@ public class MainActivity extends AppCompatActivity implements CandyView {
   @Override public void showError() {
     snackbar = Snackbar.make(rootView, R.string.error_message, Snackbar.LENGTH_SHORT);
     snackbar.show();
+  }
+
+  @Override protected void onDestroy() {
+    if (null != candyPresenter) candyPresenter.destroy();
+    super.onDestroy();
   }
 }

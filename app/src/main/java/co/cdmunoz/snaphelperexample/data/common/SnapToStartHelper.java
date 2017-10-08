@@ -2,6 +2,7 @@ package co.cdmunoz.snaphelperexample.data.common;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.OrientationHelper;
@@ -11,7 +12,7 @@ import android.view.View;
 /**
  * Based on Android's SnapHelper Doc: https://developer.android.com/reference/android/support/v7/widget/SnapHelper.html
  * Code taken from https://blog.mindorks.com/using-snaphelper-in-recyclerview-fc616b6833e8
- * This SnapHelper is customized to snap to the star of the list both horizontally and vertically
+ * This SnapHelper is customized to snap to the start of the list both horizontally and vertically
  * taking into account approximations in the calculations
  *
  * Note: LinearSnapHelper class already has an implementation by default to snap to the center
@@ -80,6 +81,12 @@ public class SnapToStartHelper extends LinearSnapHelper {
   private View getStartView(RecyclerView.LayoutManager layoutManager, OrientationHelper helper) {
     if (layoutManager instanceof LinearLayoutManager) {
       int firstChild = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
+      int offset = 1;
+
+      if (layoutManager instanceof GridLayoutManager) {
+        offset += ((GridLayoutManager) layoutManager).getSpanCount() - 1;
+      }
+
       boolean isLastItem =
           ((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition()
               == layoutManager.getItemCount() - 1;
@@ -98,7 +105,7 @@ public class SnapToStartHelper extends LinearSnapHelper {
             == layoutManager.getItemCount() - 1) {
           return null;
         } else {
-          return layoutManager.findViewByPosition(firstChild + 1);
+          return layoutManager.findViewByPosition(firstChild + offset);
         }
       }
     }

@@ -5,4 +5,8 @@
   <string name="center_snap_title">Snap the list to the center</string>
   <string name="end_snap_title">Snap the list to the end</string>
   <string name="error_message">An occurred while getting the results</string>
+  <string name="horizontal_snap">Horizontal Snap</string>
+  <string name="vertical_snap_top">Vertical Snap to the top</string>
+  <string name="vertical_snap_bottom">Vertical Snap to the bottom</string>
+  <string name="main_activity_title">Which snap do you want to test?</string>
 </resources>
