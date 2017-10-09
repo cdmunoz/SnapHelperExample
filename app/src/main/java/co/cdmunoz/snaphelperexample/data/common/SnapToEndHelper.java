@@ -2,6 +2,7 @@ package co.cdmunoz.snaphelperexample.data.common;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.OrientationHelper;
@@ -73,6 +74,10 @@ public class SnapToEndHelper extends LinearSnapHelper {
     if (layoutManager instanceof LinearLayoutManager) {
       int lastChild = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
       int offset = 1;
+
+      if (layoutManager instanceof GridLayoutManager) {
+        offset += ((GridLayoutManager) layoutManager).getSpanCount() - 1;
+      }
 
       if (lastChild == RecyclerView.NO_POSITION) {
         return null;
