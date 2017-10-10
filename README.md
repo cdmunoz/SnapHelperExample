@@ -9,4 +9,5 @@ as well respectively.
 ## How this would like
 The first list snaps the list to the start, the second to the center and the third to the end
 
-![alt text](https://github.com/cdmunoz/SnapHelperExample/blob/master/RecyclerViewSnapHelperGif.gif)
+![Horizontal Snap](https://github.com/cdmunoz/SnapHelperExample/blob/master/RecyclerViewSnapHelperHorizGif.gif)
+![Vertical Snap](https://github.com/cdmunoz/SnapHelperExample/blob/master/RecyclerViewSnapHelperVertGif.gif)

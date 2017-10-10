@@ -5,6 +5,9 @@ import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.support.v7.widget.GridLayoutManager
+
+
 
 /**
  * Based on Android's SnapHelper Doc: https://developer.android.com/reference/android/support/v7/widget/SnapHelper.html
@@ -71,6 +74,11 @@ class SnapToStartHelper : LinearSnapHelper() {
       val firstChild = layoutManager.findFirstVisibleItemPosition()
       val isLastItem = layoutManager.findLastCompletelyVisibleItemPosition() == layoutManager.getItemCount() - 1
 
+      var offset = 1
+      if (layoutManager is GridLayoutManager) {
+        offset += layoutManager.spanCount - 1
+      }
+
       if (firstChild == RecyclerView.NO_POSITION || isLastItem) {
         return null
       }
@@ -84,7 +92,7 @@ class SnapToStartHelper : LinearSnapHelper() {
         if (layoutManager.findLastCompletelyVisibleItemPosition() == layoutManager.getItemCount() - 1) {
           null
         } else {
-          layoutManager.findViewByPosition(firstChild + 1)
+          layoutManager.findViewByPosition(firstChild + offset)
         }
       }
     }

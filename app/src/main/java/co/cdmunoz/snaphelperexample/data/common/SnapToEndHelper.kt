@@ -1,10 +1,12 @@
 package co.cdmunoz.snaphelperexample.data.common
 
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
 import android.view.View
+
 
 class SnapToEndHelper : LinearSnapHelper() {
 
@@ -61,7 +63,11 @@ class SnapToEndHelper : LinearSnapHelper() {
       helper: OrientationHelper): View? {
     if (layoutManager is LinearLayoutManager) {
       val lastChild = layoutManager.findLastVisibleItemPosition()
-      val offset = 1
+      var offset = 1
+
+      if (layoutManager is GridLayoutManager) {
+        offset += layoutManager.spanCount - 1
+      }
 
       if (lastChild == RecyclerView.NO_POSITION) {
         return null

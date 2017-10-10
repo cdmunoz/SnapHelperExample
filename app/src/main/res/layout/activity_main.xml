@@ -1,93 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rootView"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
-    android:fillViewport="true"
+    android:padding="16dp"
     >
-  <RelativeLayout
+
+  <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_marginTop="16dp"
+      android:gravity="center_horizontal"
+      android:text="@string/main_activity_title"
+      android:textSize="28sp"
+      android:textStyle="italic"
+      />
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerVertical="true"
+      android:orientation="vertical"
+      android:padding="16dp"
       >
+    <ImageView
+        android:id="@+id/horizontalSnapImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_horizontal_swipe"
+        />
     <TextView
-        android:id="@+id/startSnapTitle"
+        android:id="@+id/horizontalSnapTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:padding="4dp"
-        android:text="@string/start_snap_title"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textStyle="bold|italic"
+        android:text="@string/horizontal_snap"
+        android:textSize="26sp"
         />
-    <ProgressBar android:id="@+id/startSnapProgress"
+    <ImageView
+        android:id="@+id/verticalSnapTopImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/startSnapTitle"
-        android:padding="4dp"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_vertical_swipe"
         />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/candiesContainerStartSnap"
+    <TextView
+        android:id="@+id/verticalSnapTopTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/startSnapTitle"
-        android:padding="4dp"
+        android:gravity="center_horizontal"
+        android:text="@string/vertical_snap_top"
+        android:textSize="26sp"
         />
+    <ImageView
+        android:id="@+id/verticalSnapBottomImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_vertical_swipe"
+        />
+    <TextView
+        android:id="@+id/verticalSnapBottomTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/vertical_snap_bottom"
+        android:textSize="26sp"
+        />
+  </LinearLayout>
 
-    <TextView
-        android:id="@+id/centerSnapTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/candiesContainerStartSnap"
-        android:gravity="center_horizontal"
-        android:padding="4dp"
-        android:text="@string/center_snap_title"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textStyle="bold|italic"
-        />
-    <ProgressBar android:id="@+id/centerSnapProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/centerSnapTitle"
-        android:padding="4dp"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone"
-        />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/candiesContainerCenterSnap"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/centerSnapTitle"
-        android:padding="4dp"
-        />
-
-    <TextView
-        android:id="@+id/endSnapTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/candiesContainerCenterSnap"
-        android:gravity="center_horizontal"
-        android:padding="4dp"
-        android:text="@string/end_snap_title"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textStyle="bold|italic"
-        />
-    <ProgressBar android:id="@+id/endSnapProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/endSnapTitle"
-        android:padding="4dp"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone"
-        />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/candiesContainerEndSnap"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/endSnapTitle"
-        android:padding="4dp"
-        />
-  </RelativeLayout>
-</ScrollView>
+</RelativeLayout>

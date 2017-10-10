@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    >
+  <TextView
+      android:id="@+id/snapTitle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center_horizontal"
+      android:padding="4dp"
+      android:text="@string/start_snap_title"
+      android:textAppearance="?android:textAppearanceMedium"
+      android:textStyle="bold|italic"
+      />
+  <ProgressBar
+      android:id="@+id/snapProgress"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/snapTitle"
+      android:layout_centerHorizontal="true"
+      android:padding="4dp"
+      android:visibility="gone"
+      />
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/candiesContainerSnap"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/snapProgress"
+      android:layout_centerHorizontal="true"
+      android:padding="4dp"
+      />
+</RelativeLayout>
